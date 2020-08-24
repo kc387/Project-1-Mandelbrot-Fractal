@@ -1,11 +1,11 @@
 import sys
 import os
 
-if(len(sys.argv)!=3):
-    print("Incorrect number of arguments, use python verify.py <File 1> <File 2>")
+if(len(sys.argv)!=4):
+    print("Incorrect number of arguments, use python verify.py <File 1> <File 2> <Test Name>")
     sys.exit()
 
-def checkequal(file1, file2):
+def checkequal(file1, file2, TestName):
     with open(file1) as f:
         content = f.readlines()
 # you may also want to remove whitespace characters like `\n` at the end of each line
@@ -36,12 +36,12 @@ def checkequal(file1, file2):
                 number_of_inac += 1
         percent_correct = ((1-(number_of_inac/len(student_content)))*100)
         if percent_correct > 99.85:
-            print("PASS")
+            print("PASS, "+TestName)
         else:
-            print("FAIL")
+            print("FAIL, "+TestName)
         return number_of_inac, len(student_content), percent_correct
 
-def ppmequal(file1, file2, ppm):
+def ppmequal(file1, file2, ppm, TestName):
     f, g = open(file1, "rb"), open(file2, "rb")
     headerf, headerg = f.readline(), g.readline()
     if(headerf != headerg):
@@ -65,18 +65,18 @@ def ppmequal(file1, file2, ppm):
     if ppm:
         percent_correct = (1-(a/b))*100
         if percent_correct > 99.85:
-            print("PASS")
+            print("PASS, "+TestName)
         else:
-            print("FAIL")
+            print("FAIL, "+TestName)
     return a,b, percent_correct
 
 
 if(sys.argv[1][-4:]==".txt"):
-    a,b, percent = checkequal(sys.argv[1], sys.argv[2])
+    a,b, percent = checkequal(sys.argv[1], sys.argv[2], sys.argv[3])
     print("You have " + str(a) +" inaccurate pixels" +
     ", which is a " + str(percent)+"\% accuracy.")
 elif(sys.argv[1][-4:] == ".ppm"):
-    a,b, percent = ppmequal(sys.argv[1], sys.argv[2], True)
+    a,b, percent = ppmequal(sys.argv[1], sys.argv[2], True, sys.argv[3])
     print("You have " + str(a) +" inaccurate pixels" +
     ", which is a " + str(percent)+"\% accuracy.")
 else:
@@ -89,12 +89,12 @@ else:
             num = "0"+num
         file1 = sys.argv[1]+"/frame" + num + ".ppm"
         file2 = sys.argv[2]+"/frame" + num + ".ppm"
-        c,d, percent = ppmequal(file1, file2, False)
+        c,d, percent = ppmequal(file1, file2, False, sys.argv[3])
         a+=c
         b+=d
     percent_correct = (1-(a/b))*100
     if percent_correct > 99.85:
-        print("PASS")
+        print("PASS, " + sys.argv[3])
     else:
-        print("FAIL")
+        print("FAIL, " + sys.argv[3])
     print("You have " + str(a) +" inaccurate pixels" + ", which is a " + str(percent_correct)+"\% accuracy.")
