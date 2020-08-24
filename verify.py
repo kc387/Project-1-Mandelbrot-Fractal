@@ -6,17 +6,26 @@ if(len(sys.argv)!=4):
     sys.exit()
 
 def checkequal(file1, file2, TestName):
-    with open(file1) as f:
-        content = f.readlines()
+    try:
+        with open(file1) as f:
+            content = f.readlines()
+    except FileNotFoundError:
+        print('File does not exist')
+        print("FAIL, "+TestName)
+        sys.exit()
 # you may also want to remove whitespace characters like `\n` at the end of each line
     content = [x.strip().split(" ") for x in content]
     reference_content = []
 # flattening the 2d array
     for each_row in content:
         reference_content.extend(each_row)
-
-    with open(file2) as f:
-        content = f.readlines()
+    try: 
+        with open(file2) as f:
+            content = f.readlines()
+    except FileNotFoundError:
+        print('File does not exist')
+        print("FAIL, "+TestName)
+        sys.exit()
 # you may also want to remove whitespace characters like `\n` at the end of each line
     content = [x.strip().split(" ") for x in content]
     student_content = []
@@ -26,7 +35,7 @@ def checkequal(file1, file2, TestName):
 
     if len(student_content)!=len(reference_content):
         print("Total number of pixels is incorrect! Your output has " + str(len(student_content)) + " pixels, but reference has " + str(len(reference_content)) + " pixels")
-        print("FAIL")
+        print("FAIL, "+TestName)
         sys.exit()
     else:
         number_of_inac = 0
@@ -42,11 +51,16 @@ def checkequal(file1, file2, TestName):
         return number_of_inac, len(student_content), percent_correct
 
 def ppmequal(file1, file2, ppm, TestName):
-    f, g = open(file1, "rb"), open(file2, "rb")
+    try:
+        f, g = open(file1, "rb"), open(file2, "rb")
+    except FileNotFoundError:
+        print('File does not exist')
+        print("FAIL, "+TestName)
+        sys.exit()
     headerf, headerg = f.readline(), g.readline()
     if(headerf != headerg):
         print("Error with header on ppm file " + file1)
-        print("FAIL")
+        print("FAIL, "+TestName)
         sys.exit()
     linecount, linelength = int(headerf.decode("utf-8").split(" ")[1]), int(headerf.decode("utf-8").split(" ")[2])
     a,b = 0,0
@@ -55,7 +69,7 @@ def ppmequal(file1, file2, ppm, TestName):
         linef, lineg = f.read(3*linelength), g.read(3*linelength)
         if(len(linef) != 3*linelength or len(lineg) != 3*linelength):
             print("Error with length " + file1)
-            print("FAIL")
+            print("FAIL, "+TestName)
             sys.exit()
         for j in range(linelength):
             if(linef[3*j:3*j+2] != lineg[3*j:3*j+2]):
