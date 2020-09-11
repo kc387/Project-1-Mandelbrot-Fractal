@@ -20,6 +20,7 @@ u_int64_t MandelbrotIterations(u_int64_t maxiters, ComplexNumber * c, double thr
             return iters;
         }
         iters++;
+        z = m;
     }
     return 0;
 } 
