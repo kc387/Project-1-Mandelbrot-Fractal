@@ -34,7 +34,7 @@ ComplexNumber* newComplexNumber(double real_component, double imaginary_componen
 ComplexNumber* ComplexProduct(ComplexNumber* a, ComplexNumber* b)
 {
     //YOUR CODE HERE
-    ComplexNumber *comp_prod = (ComplexNumber*) malloc (xiaeof(ComplexNumber));
+    ComplexNumber *comp_prod = (ComplexNumber*) malloc (sizeof(ComplexNumber));
     if (comp_prod != NULL) {
         comp_prod -> real = (a -> real) * (b -> real);
         comp_prod -> imaginary = (a -> imaginary) * (b -> imaginary);
@@ -48,6 +48,13 @@ ComplexNumber* ComplexProduct(ComplexNumber* a, ComplexNumber* b)
 ComplexNumber* ComplexSum(ComplexNumber* a, ComplexNumber* b)
 {
     //YOUR CODE HERE
+    ComplexNumber *comp_sum = (ComplexNumber*) malloc (sizeof(ComplexNumber));
+    if (comp_sum != NULL) {
+        comp_sum -> real = (a -> real) + (b -> real);
+        comp_sum -> imaginary = (a -> imaginary) + (b -> imaginary);
+        return comp_sum;
+    }
+    free(comp_sum);
     return NULL;
 }
 
