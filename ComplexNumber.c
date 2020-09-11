@@ -62,7 +62,8 @@ ComplexNumber* ComplexSum(ComplexNumber* a, ComplexNumber* b)
 double ComplexAbs(ComplexNumber* a)
 {
     //YOUR CODE HERE
-    return 0;
+    double comp_abs = sqrt(pow((a -> real), 2) + pow((a -> imaginary), 2));
+    return comp_abs;
 }
 
 void freeComplexNumber(ComplexNumber* a)
