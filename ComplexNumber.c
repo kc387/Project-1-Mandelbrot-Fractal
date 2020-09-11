@@ -20,6 +20,13 @@ typedef struct ComplexNumber
 ComplexNumber* newComplexNumber(double real_component, double imaginary_component)
 { 
     //YOUR CODE HERE
+    ComplexNumber *new_c = (ComplexNumber*) malloc (sizeof(ComplexNumber));
+    If (new_c != NULL){
+        new_c -> real = real_component;
+        new_c -> imaginary = imaginary_component;
+        return new_c;
+    }
+    free(new_c);
     return NULL;
 }
 
