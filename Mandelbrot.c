@@ -16,12 +16,13 @@ u_int64_t MandelbrotIterations(u_int64_t maxiters, ComplexNumber * c, double thr
     ComplexNumber* z = newComplexNumber(0, 0);
     while (iters < maxiters) {
         ComplexNumber* z_2 = ComplexProduct(z, z);
-        free(z);
-        if (ComplexAbs(ComplexSum(z_2, c)) > threshold) {
+        if (ComplexAbs(z) > threshold) {
             return iters;
         }
         iters++;
         z = ComplexSum(z_2, c);
+        free(z);
+        free(z_2);
     }
     return 0;
 } 
@@ -37,10 +38,12 @@ void Mandelbrot(double threshold, u_int64_t max_iterations, ComplexNumber* cente
     //output [size];
     for (int i = 0; i < 2*resolution+1; i ++) {
         for(int j = 0; j < 2*resolution+1; j++) {
-            ComplexNumber* c = ComplexSum(center, newComplexNumber(-scale + j*(scale/(double)resolution), scale - i*(scale/(double)resolution)));
+            ComplexNumber* inside = newComplexNumber(-scale + j*(scale/(double)resolution), scale - i*(scale/(double)resolution));
+            ComplexNumber* c = ComplexSum(center, inside);
             *output = MandelbrotIterations(max_iterations, c, threshold);
             output ++;
             free(c);
+            free(inside);
         }
     }
 }
