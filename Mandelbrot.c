@@ -3,6 +3,7 @@
 #include "ComplexNumber.h"
 #include "Mandelbrot.h"
 #include <sys/types.h>
+#include <math.h>
 
 /*
 This function returns the number of iterations before the initial point >= the threshold.
