@@ -26,6 +26,7 @@ void freeMap(int length, uint8_t** colorMap)
 uint8_t** FileToColorMap(char* colorfile, int* colorcount)
 {
     //YOUR CODE HERE
+    
 }
 
 
