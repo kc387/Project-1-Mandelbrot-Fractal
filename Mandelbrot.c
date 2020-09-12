@@ -16,12 +16,11 @@ u_int64_t MandelbrotIterations(u_int64_t maxiters, ComplexNumber * c, double thr
     ComplexNumber* z = newComplexNumber(0, 0);
     while (iters < maxiters) {
         ComplexNumber* z_2 = ComplexProduct(z, z);
-        ComplexNumber* m = ComplexSum(z_2, c);
-        if (ComplexAbs(m) > threshold) {
+        z = ComplexSum(z_2, c);
+        if (ComplexAbs(z) > threshold) {
             return iters;
         }
         iters++;
-        z = m;
     }
     return 0;
 } 
