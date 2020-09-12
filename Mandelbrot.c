@@ -35,15 +35,13 @@ void Mandelbrot(double threshold, u_int64_t max_iterations, ComplexNumber* cente
     //YOUR CODE HERE
     //u_int64_t size = (2 * resolution + 1) * (2 * resolution + 1);
     //output [size];
-    for (int i = 0; i < ((2 * resolution + 1) * (2 * resolution + 1)); i += 1) {
-        double r = -scale + i%(2*resolution+1) * (scale/(double)resolution);
-        int q = i/(2*resolution+1);
-        double col = scale + (int)q * (scale/(double)resolution);
-        ComplexNumber* inside = newComplexNumber(r, col);
-        ComplexNumber* c = ComplexSum(center, inside);
-        u_int64_t mandelbrot = MandelbrotIterations(max_iterations, c, threshold);
-        *output = mandelbrot;
-        output++;
+    for (int i = 0; i < 2*resolution+1; i ++) {
+        for(int j = 0; j < 2*resolution+1; j++) {
+            ComplexNumber* c = ComplexSum(center, newComplexNumber(-scale + j*(scale/(double)resolution), scale + i*(scale/(double)resolution)));
+            *output = MandelbrotIterations(max_iterations, c, threshold);
+            output ++;
+            free(c);
+        }
     }
 }
 
