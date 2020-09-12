@@ -33,16 +33,16 @@ Scale is the the distance between center and the top pixel in one dimension.
 */
 void Mandelbrot(double threshold, u_int64_t max_iterations, ComplexNumber* center, double scale, u_int64_t resolution, u_int64_t * output){
     //YOUR CODE HERE
-    u_int64_t size = (2 * resolution + 1) * (2 * resolution + 1);
-    output [size];
-    for (int i = 0; i < size; i += 1) {
-        double r = -scale + i%(2*resolution+1) * (scale/resolution);
+    //u_int64_t size = (2 * resolution + 1) * (2 * resolution + 1);
+    //output [size];
+    for (int i = 0; i < ((2 * resolution + 1) * (2 * resolution + 1)); i += 1) {
+        double r = -scale + i%(2*resolution+1) * (scale/(double)resolution);
         int q = i/(2*resolution+1);
-        double col = -scale + q * (scale/resolution);
+        double col = -scale + q * (scale/(double)resolution);
         ComplexNumber* inside = newComplexNumber(r, col);
         ComplexNumber* c = ComplexSum(center, inside);
         u_int64_t mandelbrot = MandelbrotIterations(max_iterations, c, threshold);
-        output[i] = mandelbrot;
+        *output++ = mandelbrot;
     }
 }
 
