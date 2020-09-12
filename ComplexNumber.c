@@ -34,14 +34,7 @@ ComplexNumber* newComplexNumber(double real_component, double imaginary_componen
 ComplexNumber* ComplexProduct(ComplexNumber* a, ComplexNumber* b)
 {
     //YOUR CODE HERE
-    ComplexNumber *comp_prod = (ComplexNumber*) malloc (sizeof(ComplexNumber));
-    if (comp_prod != NULL) {
-        comp_prod -> real = (a -> real) * (b -> real);
-        comp_prod -> imaginary = (a -> imaginary) * (b -> imaginary);
-        return comp_prod;
-    }
-    free(comp_prod);
-    return NULL;
+    return newComplexNumber(a->real*b->real-a->imaginary*b->imaginary, a->real*b->imaginary+b->real*a->imaginary);
 }
 
 //Returns a pointer to a new Complex Number equal to a+b
