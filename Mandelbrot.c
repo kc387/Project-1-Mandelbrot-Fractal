@@ -21,7 +21,7 @@ u_int64_t MandelbrotIterations(u_int64_t maxiters, ComplexNumber * c, double thr
         }
         free(z);
         iters++;
-        ComplexNumber* m = ComplexSum(z_2, c);
+        m = ComplexSum(z_2, c);
         z = m;
         free(z_2);
         free(m);
