@@ -28,7 +28,7 @@ uint8_t** FileToColorMap(char* colorfile, int* colorcount)
 {
     //YOUR CODE HERE
     colorcount = 0;
-    FILE* cfile = fopen('colorfile', 'r');
+    FILE* cfile = fopen(colorfile, 'r');
     if(cfile == NULL) {
         return NULL;
     }
