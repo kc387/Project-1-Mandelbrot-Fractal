@@ -41,18 +41,27 @@ uint8_t** FileToColorMap(char* colorfile, int* colorcount)
     }
 
     uint8_t** carray = (uint8_t**) malloc (sizeof(uint8_t*));
-    uint8_t* rbg[3];
-    uint8_t r, b, g;
+    uint8_t* rgb[3];
+    uint8_t* r, g, b;
     while(colorcount < numcount) {
-        if (fscanf(cfile, "%hhu", "%hhu", "%hhu", r, b, g) != 3) {
+        if (fscanf(cfile, "%d", "%d", "%d", &r, &g, &b) != 3) {
             return NULL;
             }
         else {
+            if (r > 255 || r < 0) {
+                r = 0;
+            }
+            if (g > 255 || g < 0) {
+                g = 0;
+            }
+            if (b > 255 || b < 0) {
+                b = 0;
+            }
             uint8_t* carray = (uint8_t*) malloc (3 * sizeof(uint8_t));
-            *rbg[0] = r;
-            *rbg[1] = b;
-            *rbg[2] = g;
-            *carray = rbg;
+            *rgb[0] = (uint8_t)r;
+            *rgb[1] = (uint8_t)g;
+            *rgb[2] = (uint8_t)b;
+            *carray = rgb;
             carray++;
             colorcount++;
         }

@@ -15,6 +15,17 @@ int P3colorpalette(u_int64_t size, uint8_t** colorMap, int colorcount, u_int64_t
     //YOUR CODE HERE
     FILE* out = fopen(outputfile, "w");
     fprintf(out, "%s %lu %lu %d\n", 'P3', size, size, 255);
+    for(int i = 0; i < size * size; i ++) {
+        if(MandelOut[i] == 0) {
+            fprintf(out, "%d %d %d/n", 0, 0, 0);
+        }
+        else if (MandelOut[i] > colorcount)
+        {
+            int index = MandelOut[i] - colorcount;
+            
+        }
+        
+    }
     return 0;
 }
 
