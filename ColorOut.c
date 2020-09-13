@@ -13,6 +13,7 @@
 int P3colorpalette(u_int64_t size, uint8_t** colorMap, int colorcount, u_int64_t * MandelOut, char* outputfile)
 {
     //YOUR CODE HERE
+    FILE* out = fopen(outputfile, "w");
     return 0;
 }
 

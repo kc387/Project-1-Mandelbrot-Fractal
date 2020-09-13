@@ -57,6 +57,7 @@ uint8_t** FileToColorMap(char* colorfile, int* colorcount)
             colorcount++;
         }
     }
+    fclose(cfile);
     return carray;
 }
 
