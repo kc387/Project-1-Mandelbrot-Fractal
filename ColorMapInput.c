@@ -58,9 +58,9 @@ uint8_t** FileToColorMap(char* colorfile, int* colorcount)
                 b = 0;
             }
             uint8_t* carray = (uint8_t*) malloc (3 * sizeof(uint8_t));
-            *rgb[0] = (uint8_t)r;
-            *rgb[1] = (uint8_t)g;
-            *rgb[2] = (uint8_t)b;
+            rgb[0] = (uint8_t)r;
+            rgb[1] = (uint8_t)g;
+            rgb[2] = (uint8_t)b;
             *carray = rgb;
             carray++;
             colorcount++;
