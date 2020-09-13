@@ -36,7 +36,11 @@ uint8_t** FileToColorMap(char* colorfile, int* colorcount)
     if (fscanf(cfile, "%d", &numcount) != 1) {
         return NULL;
     }
-    uint8_t** carray;
+    else{
+        fscanf(cfile, "%d", &numcount);
+    }
+
+    uint8_t** carray = (uint8_t**) malloc (sizeof(uint8_t*));
     uint8_t* rbg[3];
     uint8_t r, b, g;
     while(colorcount < numcount) {
