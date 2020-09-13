@@ -14,6 +14,7 @@ int P3colorpalette(u_int64_t size, uint8_t** colorMap, int colorcount, u_int64_t
 {
     //YOUR CODE HERE
     FILE* out = fopen(outputfile, "w");
+    fprintf(out, "%s %lu %lu %d\n", 'P3', size, size, 255);
     return 0;
 }
 
