@@ -17,6 +17,7 @@
 void freeMap(int length, uint8_t** colorMap)
 {
     //YOUR CODE HERE 
+    free(colorMap);
 }
 
 /**************
