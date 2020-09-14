@@ -36,7 +36,7 @@ ComplexNumber* ComplexProduct(ComplexNumber* a, ComplexNumber* b)
     //YOUR CODE HERE
     ComplexNumber *comp_prod = (ComplexNumber*) malloc (sizeof(ComplexNumber));
     if (comp_prod != NULL) {
-        comp_prod -> real = a->real*b->real-a->imaginary*b->imaginary;
+        comp_prod -> real = a->real*b->real - a->imaginary*b->imaginary;
         comp_prod -> imaginary = a->real*b->imaginary+b->real*a->imaginary;
         return comp_prod;
     }

@@ -18,8 +18,8 @@ u_int64_t MandelbrotIterations(u_int64_t maxiters, ComplexNumber * c, double thr
         if (ComplexAbs(z) > threshold) {
             return iters;
         }
-        freeComplexNumber(z);
         ComplexNumber* z_2 = ComplexProduct(z, z);
+        freeComplexNumber(z);
         z = ComplexSum(z_2, c);
         freeComplexNumber(z_2);
         iters++;
