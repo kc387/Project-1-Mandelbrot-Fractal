@@ -38,6 +38,7 @@ int P3colorpalette(u_int64_t size, uint8_t** colorMap, int colorcount, u_int64_t
         }
         
     }
+    fclose(out);
     return 0;
 }
 
