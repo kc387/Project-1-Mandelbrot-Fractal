@@ -43,7 +43,7 @@ void Mandelbrot(double threshold, u_int64_t max_iterations, ComplexNumber* cente
             ComplexNumber* c = ComplexSum(center, inside);
             if(inside != NULL && c != NULL) {
                 *output = MandelbrotIterations(max_iterations, c, threshold);
-                output ++;
+                output++;
                 free(c);
                 free(inside);
             }
