@@ -8,11 +8,11 @@
 #include "ColorOut.h"
 #include <sys/types.h>
  
-void printUsage(char* argv[])
+/*void printUsage(char* argv[])
 {
     printf("Usage: %s <threshold> <maxiterations> <center_real> <center_imaginary> <initialscale> <finalscale> <framecount> <resolution> <output_folder> <colorfile>\n", argv[0]);
     printf("    This program simulates the Mandelbrot Fractal, and creates an iteration map of the given center, scale, and resolution, then saves it in output_file\n");
-}
+}*/
 
 
 /*
