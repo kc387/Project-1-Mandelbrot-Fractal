@@ -69,7 +69,9 @@ double ComplexAbs(ComplexNumber* a)
 void freeComplexNumber(ComplexNumber* a)
 {
     //YOUR CODE HERE
-    free(a);
+    if (a != NULL){
+        free(a);
+    }
 }
 
 double Re(ComplexNumber* a)
