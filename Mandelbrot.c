@@ -15,14 +15,14 @@ u_int64_t MandelbrotIterations(u_int64_t maxiters, ComplexNumber * c, double thr
     u_int64_t iters = 0;
     ComplexNumber* z = newComplexNumber(0.0, 0.0);
     while (iters < maxiters) {
-        ComplexNumber* z_2 = ComplexProduct(z, z);
         if (ComplexAbs(z) > threshold) {
             return iters;
         }
         freeComplexNumber(z);
-        iters++;
+        ComplexNumber* z_2 = ComplexProduct(z, z);
         z = ComplexSum(z_2, c);
         freeComplexNumber(z_2);
+        iters++;
     }
     freeComplexNumber(z);
     return 0;
