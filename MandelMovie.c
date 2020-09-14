@@ -71,8 +71,14 @@ int main(int argc, char* argv[])
     output_folder = argv[9];
     colorfile = argv[10];
 
-    if (threshold <= 0 || initialscale <= 0 || finalscale <= 0 || max_iterations <= 0 || framecount <= 0 || framecount > 10000 || framecount == 1 || initialscale != finalscale) {
+    if (threshold <= 0 || initialscale <= 0 || finalscale <= 0 || max_iterations <= 0 || framecount <= 0 || framecount > 10000) {
     	printf("Main Error \n");
+    	freeComplexNumber(center);
+    	return 1;
+    }
+
+    if(framecount == 1 && initialscale != finalscale) {
+        printf("Main Error \n");
     	freeComplexNumber(center);
     	return 1;
     }
