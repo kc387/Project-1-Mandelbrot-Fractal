@@ -49,11 +49,33 @@ int main(int argc, char* argv[])
 
     //YOUR CODE HERE 
     if(argv != 11) {
-        printf("%s: Main Error \n");
+        printf("Main Error \n");
         return 1;
     }
 
+    double threshold, initialscale, finalscale;
+    int framecount;
+    ComplexNumber* center;
+    u_int64_t max_iterations, resolution;
+    u_int64_t ** output;
+    char * output_folder;
+    char * colorfile;
 
+    threshold = atof(argv[1]);
+    max_iterations = (u_int64_t)atoi(argv[2]);
+    center = newComplexNumber(atof(argv[3]), atof(argv[4]));
+    initialscale = atof(argv[5]);
+    finalscale = atof(argv[6]);
+    framecount = atoi(argv[7]);
+    resolution = (u_int64_t)atoi(argv[8]);
+    output_folder = argv[9];
+    colorfile = argv[10];
+
+    if (threshold <= 0 || initialscale <= 0 || finalscale <= 0 || max_iterations <= 0 || framecount <= 0 || framecount > 10000 || framecount == 1 || initialscale != finalscale) {
+    	printf("Main Error \n");
+    	freeComplexNumber(center);
+    	return 1;
+    }
 
     //STEP 2: Run MandelMovie on the correct arguments.
     /*
