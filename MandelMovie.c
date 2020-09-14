@@ -58,7 +58,6 @@ int main(int argc, char* argv[])
     ComplexNumber* center;
     u_int64_t max_iterations, resolution;
     u_int64_t ** output;
-    char * output_folder;
     char * colorfile;
 
     threshold = atof(argv[1]);
@@ -68,7 +67,6 @@ int main(int argc, char* argv[])
     finalscale = atof(argv[6]);
     framecount = atoi(argv[7]);
     resolution = (u_int64_t)atoi(argv[8]);
-    output_folder = argv[9];
     colorfile = argv[10];
 
     if (threshold <= 0 || initialscale <= 0 || finalscale <= 0 || max_iterations <= 0 || framecount <= 0 || framecount > 10000) {
@@ -135,25 +133,21 @@ int main(int argc, char* argv[])
     */
 
     //YOUR CODE HERE 
-    FILE* outputfile = fopen(argv[9], "w+");
     for (int i = 0; i < framecount; i ++) {
-        char* b[64];
-        if(sprintf(b, "%s/frame%05d.ppm", output_folder, i) >= 0){
+        char b[128];
+        if(sprintf(b, "%s/frame%05d.ppm", argv[9], i) < 0 || P6colorpalette(size, colormap, colorcount, output[i], b) == 1){
             printf("Main Error \n");
             freeComplexNumber(center);
-            for(int i = 0; i < framecount; i ++) { 
-                if(*(output + i) != NULL) {
-                    free(*(output + i));
+            for(int j = 0; j < i; j ++) { 
+                if(*(output + j) != NULL) {
+                    free(*(output + j));
                 }
              }
             free(output);
             freeMap(colorcount, colormap);
             return 1;
         }
-        P6colorpalette(size, colormap, colorcount, output[i], b);
     }
-
-    fclose(outputfile);
 
 
     //STEP 4: Free all allocated memory
