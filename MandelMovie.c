@@ -61,6 +61,7 @@ int main(int argc, char* argv[])
     char * colorfile;
 
     threshold = atof(argv[1]);
+    printf("OUTPUT: %f\n", threshold);
     max_iterations = (u_int64_t)atoi(argv[2]);
     initialscale = atof(argv[5]);
     finalscale = atof(argv[6]);
