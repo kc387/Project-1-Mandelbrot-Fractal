@@ -113,6 +113,7 @@ int main(int argc, char* argv[])
             for(int j = 0; j < i; j++) {
                 free(*(output + j));
             }
+            free(output);
             freeMap(colorcount, colormap);
             return 1;
         }
@@ -130,7 +131,9 @@ int main(int argc, char* argv[])
 
     //YOUR CODE HERE 
     FILE* outputfile = fopen(argv[9], "w+");
-    
+    for (int i = 0; i < framecount; i ++) {
+        
+    }
 
     fclose(output);
 
