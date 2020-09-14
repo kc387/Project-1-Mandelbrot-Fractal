@@ -143,7 +143,7 @@ int main(int argc, char* argv[])
         free(b);
     }
 
-    fclose(output);
+    fclose(outputfile);
 
 
     //STEP 4: Free all allocated memory
