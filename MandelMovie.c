@@ -85,6 +85,9 @@ int main(int argc, char* argv[])
 
     u_int64_t size = 2 * resolution + 1;
 
+    int colorcount;
+    uint8_t** colormap = FileToColorMap(colorfile, &colorcount);
+
     //STEP 2: Run MandelMovie on the correct arguments.
     /*
     MandelMovie requires an output array, so make sure you allocate the proper amount of space. 
@@ -96,6 +99,9 @@ int main(int argc, char* argv[])
 
     if(output == NULL) {
         printf("Main Error \n");
+        freeComplexNumber(center);
+        free(output);
+        freeMap(colorcount, colormap);
     	return 1;
     }
 
@@ -103,10 +109,15 @@ int main(int argc, char* argv[])
         *(output + i) = (uint64_t *) malloc (size * size * sizeof(uint64_t));
         if(*(output + i) == NULL) {
             printf("Main Error \n");
+            freeComplexNumber(center);
+            for(int j = 0; j < i; j++) {
+                free(*(output + j));
+            }
+            freeMap(colorcount, colormap);
             return 1;
         }
     }
-    
+
     MandelMovie(threshold, max_iterations, center, initialscale, finalscale, framecount, resolution, output);
 
     //STEP 3: Output the results of MandelMovie to .ppm files.
@@ -118,8 +129,10 @@ int main(int argc, char* argv[])
     */
 
     //YOUR CODE HERE 
+    FILE* outputfile = fopen(argv[9], "w+");
+    
 
-
+    fclose(output);
 
 
     //STEP 4: Free all allocated memory
@@ -127,7 +140,12 @@ int main(int argc, char* argv[])
     Make sure there's no memory leak.
     */
     //YOUR CODE HERE 
-
+    freeMap(colorcount, colormap);
+    freeComplexNumber(center);
+    for(int i = 0; i < size*size; i ++) {
+        free(*(output + i));
+    }
+    free(output);
 
 
 
