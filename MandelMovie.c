@@ -61,7 +61,6 @@ int main(int argc, char* argv[])
     char * colorfile;
 
     threshold = atof(argv[1]);
-    printf("OUTPUT: %f\n", threshold);
     max_iterations = (u_int64_t)atoi(argv[2]);
     initialscale = atof(argv[5]);
     finalscale = atof(argv[6]);
@@ -69,10 +68,17 @@ int main(int argc, char* argv[])
     resolution = (u_int64_t)atoi(argv[8]);
     colorfile = argv[10];
 
-    if (threshold <= 0 || initialscale <= 0 || finalscale <= 0 || max_iterations <= 0 || framecount <= 0 || framecount > 10000) {
+    if (initialscale <= 0 || finalscale <= 0 || max_iterations <= 0 || framecount <= 0 || framecount > 10000) {
     	printf("Main Error \n");
     	return 1;
     }
+
+    if (threshold <= 0) {
+        printf("Main Error \n");
+    	return 1;
+    }
+
+
 
     if(framecount == 1 && initialscale != finalscale) {
         printf("Main Error \n");
