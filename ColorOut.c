@@ -42,9 +42,10 @@ int P3colorpalette(u_int64_t size, uint8_t** colorMap, int colorcount, u_int64_t
             }
         }
         else {
-            int r = *(*(colorMap + i - 1) + 0);
-            int g = *(*(colorMap + i - 1) + 1);
-            int b = *(*(colorMap + i - 1) + 2);
+            int index = MandelOut[i];
+            int r = *(*(colorMap + index - 1) + 0);
+            int g = *(*(colorMap + index - 1) + 1);
+            int b = *(*(colorMap + index - 1) + 2);
             fprintf(out, "%d %d %d\n", r, g, b);
         }
         

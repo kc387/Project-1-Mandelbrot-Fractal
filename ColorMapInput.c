@@ -54,7 +54,6 @@ uint8_t** FileToColorMap(char* colorfile, int* colorcount)
             *(rgb + 1) = (uint8_t)g;
             *(rgb + 2) = (uint8_t)b;
             *(carray + i) = rgb;
-            //free(rgb);
         }
     }
     fclose(cfile);
