@@ -20,7 +20,7 @@ int P3colorpalette(u_int64_t size, uint8_t** colorMap, int colorcount, u_int64_t
     if(fprintf(out, "P3 %lu %lu %d\n", size, size, 255) < 0) {
         fclose(out);
         return 1;
-    };
+    }
     for(int i = 0; i < size * size; i ++) {
         if(MandelOut[i] == 0) {
             fprintf(out, "%d %d %d\n", 0, 0, 0);
@@ -60,5 +60,13 @@ int P3colorpalette(u_int64_t size, uint8_t** colorMap, int colorcount, u_int64_t
 int P6colorpalette(u_int64_t size, uint8_t** colorMap, int colorcount, u_int64_t * MandelOut, char* outputfile)
 {
     //YOUR CODE HERE
+    FILE* out = fopen(outputfile, "w");
+    if(out == NULL) {
+        return 1;
+    }
+    if(fprintf(out, "P6 %lu %lu %d\n", size, size, 255) < 0) {
+        fclose(out);
+        return 1;
+    }
     return 0;
 } 
