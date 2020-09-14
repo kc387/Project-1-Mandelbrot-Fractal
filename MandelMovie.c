@@ -86,7 +86,7 @@ int main(int argc, char* argv[])
     */
 
     //YOUR CODE HERE 
-
+    output = (uint64_t **) malloc (size * size * sizeof(uint64_t*));
 
 
     //STEP 3: Output the results of MandelMovie to .ppm files.
