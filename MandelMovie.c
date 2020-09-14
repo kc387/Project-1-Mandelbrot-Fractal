@@ -68,17 +68,35 @@ int main(int argc, char* argv[])
     resolution = (u_int64_t)atoi(argv[8]);
     colorfile = argv[10];
 
-    if (initialscale <= 0 || finalscale <= 0 || max_iterations <= 0 || framecount <= 0 || framecount > 10000) {
-    	printf("Main Error \n");
-    	return 1;
-    }
-
     if (threshold <= 0) {
         printf("Main Error \n");
     	return 1;
     }
 
+    if(max_iterations <= 0) {
+        printf("Main Error \n");
+    	return 1;
+    }
 
+    if (initialscale <= 0) {
+        printf("Main Error \n");
+    	return 1;
+    }
+
+    if (finalscale <= 0) {
+        printf("Main Error \n");
+    	return 1;
+    }
+
+    if (resolution < 0) {
+        printf("Main Error \n");
+    	return 1;
+    }
+
+    if (framecount <= 0 || framecount > 10000) {
+    	printf("Main Error \n");
+    	return 1;
+    }
 
     if(framecount == 1 && initialscale != finalscale) {
         printf("Main Error \n");
