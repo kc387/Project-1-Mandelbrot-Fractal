@@ -151,12 +151,15 @@ int main(int argc, char* argv[])
     Make sure there's no memory leak.
     */
     //YOUR CODE HERE 
-    freeMap(colorcount, colormap);
+    
     freeComplexNumber(center);
-    for(int i = 0; i < size*size; i ++) {
-        free(*(output + i));
+    for(int i = 0; i < framecount; i ++) {
+        if(*(output + i) != NULL) {
+            free(*(output + i));
+        }
     }
     free(output);
+    freeMap(colorcount, colormap);
 
     return 0;
 }
