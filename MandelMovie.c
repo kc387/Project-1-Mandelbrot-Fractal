@@ -88,6 +88,13 @@ int main(int argc, char* argv[])
     //YOUR CODE HERE 
     output = (uint64_t **) malloc (size * size * sizeof(uint64_t*));
 
+    if(output == NULL) {
+        printf("Main Error \n");
+    	
+    	return 1;
+    }
+
+    MandelMovie(threshold, max_iterations, center, initialscale, finalscale, framecount, resolution, output);
 
     //STEP 3: Output the results of MandelMovie to .ppm files.
     /*
