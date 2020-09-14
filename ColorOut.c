@@ -29,10 +29,9 @@ int P3colorpalette(u_int64_t size, uint8_t** colorMap, int colorcount, u_int64_t
         {
             int index = MandelOut[i] % colorcount;
             if(index == 0) {
-                index = colorcount;
-                int r = (*(colorMap + index))[0];
-                int g = (*(colorMap + index))[1];
-                int b = (*(colorMap + index))[2];
+                int r = (*(colorMap + colorcount))[0];
+                int g = (*(colorMap + colorcount))[1];
+                int b = (*(colorMap + colorcount))[2];
                 fprintf(out, "%d %d %d\n", r, g, b);
             }
             else {
