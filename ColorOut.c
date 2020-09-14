@@ -70,33 +70,33 @@ int P6colorpalette(u_int64_t size, uint8_t** colorMap, int colorcount, u_int64_t
     }
     for(int i = 0; i < size * size; i ++) {
         if(MandelOut[i] == 0) {
-            int* rgb[3] = {0, 0, 0};
+            uint8_t* rgb[3] = {0, 0, 0};
             fwrite(rgb, 1, 3, out);
         }
         else if (MandelOut[i] > colorcount)
         {
             int index = MandelOut[i] % colorcount;
             if(index == 0) {
-                int r = *(*(colorMap + colorcount - 1) + 0);
-                int g = *(*(colorMap + colorcount - 1) + 1);
-                int b = *(*(colorMap + colorcount - 1) + 2);
-                int* rgb[3] = {r, g, b};
+                uint8_t r = *(*(colorMap + colorcount - 1) + 0);
+                uint8_t g = *(*(colorMap + colorcount - 1) + 1);
+                uint8_t b = *(*(colorMap + colorcount - 1) + 2);
+                uint8_t* rgb[3] = {r, g, b};
                 fwrite(rgb, 1, 3, out);
             }
             else {
                 int r = *(*(colorMap + index - 1) + 0);
                 int g = *(*(colorMap + index - 1) + 1);
                 int b = *(*(colorMap + index - 1) + 2);
-                int* rgb[3] = {r, g, b};
+                uint8_t* rgb[3] = {r, g, b};
                 fwrite(rgb, 1, 3, out);
             }
         }
         else {
             int index = MandelOut[i];
-            int r = *(*(colorMap + index - 1) + 0);
-            int g = *(*(colorMap + index - 1) + 1);
-            int b = *(*(colorMap + index - 1) + 2);
-            int* rgb[3] = {r, g, b};
+            uint8_t r = *(*(colorMap + index - 1) + 0);
+            uint8_t g = *(*(colorMap + index - 1) + 1);
+            uint8_t b = *(*(colorMap + index - 1) + 2);
+            uint8_t* rgb[3] = {r, g, b};
             fwrite(rgb, 1, 3, out);
         }
         
