@@ -119,6 +119,11 @@ int main(int argc, char* argv[])
         }
     }
 
+    if(colormap == NULL) {
+        printf("Main Error \n");
+        return 1;
+    }
+
     MandelMovie(threshold, max_iterations, center, initialscale, finalscale, framecount, resolution, output);
 
     //STEP 3: Output the results of MandelMovie to .ppm files.
@@ -132,7 +137,10 @@ int main(int argc, char* argv[])
     //YOUR CODE HERE 
     FILE* outputfile = fopen(argv[9], "w+");
     for (int i = 0; i < framecount; i ++) {
-        
+        char* b = (char*) malloc (100 * sizeof(char));
+        sprint(b, "%s/frame%05d.ppm", output_folder, i);
+        P6colorpalette(size, colormap, colorcount, output[i], b);
+        free(b);
     }
 
     fclose(output);
