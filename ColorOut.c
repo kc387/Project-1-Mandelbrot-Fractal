@@ -84,9 +84,9 @@ int P6colorpalette(u_int64_t size, uint8_t** colorMap, int colorcount, u_int64_t
                 fwrite(rgb, 1, 3, out);
             }
             else {
-                int r = *(*(colorMap + index - 1) + 0);
-                int g = *(*(colorMap + index - 1) + 1);
-                int b = *(*(colorMap + index - 1) + 2);
+                uint8_t r = *(*(colorMap + index - 1) + 0);
+                uint8_t g = *(*(colorMap + index - 1) + 1);
+                uint8_t b = *(*(colorMap + index - 1) + 2);
                 uint8_t* rgb[3] = {r, g, b};
                 fwrite(rgb, 1, 3, out);
             }
