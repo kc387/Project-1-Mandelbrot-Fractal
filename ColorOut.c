@@ -17,7 +17,10 @@ int P3colorpalette(u_int64_t size, uint8_t** colorMap, int colorcount, u_int64_t
     if(out == NULL) {
         return 1;
     }
-    fprintf(out, "P3 %lu %lu 255/n", size, size);
+    if(fprintf(out, "P3 %lu %lu 255/n", size, size) < 0) {
+        fclose(out);
+        return 1;
+    };
     for(int i = 0; i < size * size; i ++) {
         if(MandelOut[i] == 0) {
             fprintf(out, "%d %d %d/n", 0, 0, 0);
