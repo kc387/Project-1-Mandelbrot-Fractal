@@ -41,11 +41,11 @@ void Mandelbrot(double threshold, u_int64_t max_iterations, ComplexNumber* cente
         for(int j = 0; j < 2*resolution+1; j++) {
             ComplexNumber* inside = newComplexNumber(-scale + j*(scale/(double)resolution), scale - i*(scale/(double)resolution));
             ComplexNumber* c = ComplexSum(center, inside);
-            if(inside == NULL && c == NULL) {
+            if(inside != NULL && c != NULL) {
                 *output = MandelbrotIterations(max_iterations, c, threshold);
-            output ++;
-            free(c);
-            free(inside);
+                output ++;
+                free(c);
+                free(inside);
             }
         }
     }
