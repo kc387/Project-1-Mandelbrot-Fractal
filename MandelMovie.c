@@ -138,7 +138,18 @@ int main(int argc, char* argv[])
     FILE* outputfile = fopen(argv[9], "w+");
     for (int i = 0; i < framecount; i ++) {
         char* b[64];
-        sprintf(b, "%s/frame%05d.ppm", output_folder, i);
+        if(sprintf(b, "%s/frame%05d.ppm", output_folder, i) >= 0){
+            printf("Main Error \n");
+            freeComplexNumber(center);
+            for(int i = 0; i < framecount; i ++) { 
+                if(*(output + i) != NULL) {
+                    free(*(output + i));
+                }
+             }
+            free(output);
+            freeMap(colorcount, colormap);
+            return 1;
+        }
         P6colorpalette(size, colormap, colorcount, output[i], b);
     }
 
