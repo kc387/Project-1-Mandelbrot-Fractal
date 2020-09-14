@@ -23,7 +23,7 @@ int P3colorpalette(u_int64_t size, uint8_t** colorMap, int colorcount, u_int64_t
     };
     for(int i = 0; i < size * size; i ++) {
         if(MandelOut[i] == 0) {
-            fprintf(out, "%d %d %d/n", 0, 0, 0);
+            fprintf(out, "%d %d %d\n", 0, 0, 0);
         }
         else if (MandelOut[i] > colorcount)
         {
@@ -33,20 +33,20 @@ int P3colorpalette(u_int64_t size, uint8_t** colorMap, int colorcount, u_int64_t
                 int r = (*(colorMap + index))[0];
                 int g = (*(colorMap + index))[1];
                 int b = (*(colorMap + index))[2];
-                fprintf(out, "%d %d %d/n", r, g, b);
+                fprintf(out, "%d %d %d\n", r, g, b);
             }
             else {
                 int r = (*(colorMap + index))[0];
                 int g = (*(colorMap + index))[1];
                 int b = (*(colorMap + index))[2];
-                fprintf(out, "%d %d %d/n", r, g, b);
+                fprintf(out, "%d %d %d\n", r, g, b);
             }
         }
         else {
             int r = (*(colorMap + i))[0];
             int g = (*(colorMap + i))[1];
             int b = (*(colorMap + i))[2];
-            fprintf(out, "%d %d %d/n", r, g, b);
+            fprintf(out, "%d %d %d\n", r, g, b);
         }
         
     }
