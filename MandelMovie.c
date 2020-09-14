@@ -48,7 +48,7 @@ int main(int argc, char* argv[])
     */
 
     //YOUR CODE HERE 
-    if(argv != 11) {
+    if(argc != 11) {
         printf("Main Error \n");
         return 1;
     }
