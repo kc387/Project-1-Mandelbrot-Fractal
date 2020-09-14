@@ -137,10 +137,9 @@ int main(int argc, char* argv[])
     //YOUR CODE HERE 
     FILE* outputfile = fopen(argv[9], "w+");
     for (int i = 0; i < framecount; i ++) {
-        char* b = (char*) malloc (100 * sizeof(char));
+        char* b[64];
         sprintf(b, "%s/frame%05d.ppm", output_folder, i);
         P6colorpalette(size, colormap, colorcount, output[i], b);
-        free(b);
     }
 
     fclose(outputfile);
