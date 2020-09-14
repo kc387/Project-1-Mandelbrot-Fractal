@@ -49,7 +49,7 @@ int main(int argc, char* argv[])
 
     //YOUR CODE HERE 
     if(argc != 11) {
-        printf("Main Error \n");
+        printf("Main Error\n");
         return 1;
     }
 
@@ -69,37 +69,37 @@ int main(int argc, char* argv[])
     colorfile = argv[10];
 
     if (threshold <= 0) {
-        printf("Main Error \n");
+        printf("Main Error\n");
     	return 1;
     }
 
     if(max_iterations <= 0) {
-        printf("Main Error \n");
+        printf("Main Error\n");
     	return 1;
     }
 
     if (initialscale <= 0) {
-        printf("Main Error \n");
+        printf("Main Error\n");
     	return 1;
     }
 
     if (finalscale <= 0) {
-        printf("Main Error \n");
+        printf("Main Error\n");
     	return 1;
     }
 
     if (resolution < 0) {
-        printf("Main Error \n");
+        printf("Main Error\n");
     	return 1;
     }
 
     if (framecount <= 0 || framecount > 10000) {
-    	printf("Main Error \n");
+    	printf("Main Error\n");
     	return 1;
     }
 
     if(framecount == 1 && initialscale != finalscale) {
-        printf("Main Error \n");
+        printf("Main Error\n");
     	return 1;
     }
 
@@ -107,13 +107,13 @@ int main(int argc, char* argv[])
 
     center = newComplexNumber(atof(argv[3]), atof(argv[4]));
     if(center == NULL) {
-        printf("Main Error \n");
+        printf("Main Error\n");
     	return 1;
     }
     int colorcount;
     uint8_t** colormap = FileToColorMap(colorfile, &colorcount);
     if(colormap == NULL) {
-        printf("Main Error \n");
+        printf("Main Error\n");
     	return 1;
     }
 
@@ -127,7 +127,7 @@ int main(int argc, char* argv[])
     output = (uint64_t **) malloc (framecount * sizeof(uint64_t*));
 
     if(output == NULL) {
-        printf("Main Error \n");
+        printf("Main Error\n");
         freeComplexNumber(center);
         free(output);
         freeMap(colorcount, colormap);
@@ -137,7 +137,7 @@ int main(int argc, char* argv[])
     for (int i = 0; i < framecount; i ++) {
         *(output + i) = (uint64_t *) malloc (size * size * sizeof(uint64_t));
         if(*(output + i) == NULL) {
-            printf("Main Error \n");
+            printf("Main Error\n");
             freeComplexNumber(center);
             for(int j = 0; j < i; j++) {
                 free(*(output + j));
@@ -149,7 +149,7 @@ int main(int argc, char* argv[])
     }
 
     if(colormap == NULL) {
-        printf("Main Error \n");
+        printf("Main Error\n");
         return 1;
     }
 
@@ -167,7 +167,7 @@ int main(int argc, char* argv[])
     for (int i = 0; i < framecount; i ++) {
         char b[128];
         if(sprintf(b, "%s/frame%05d.ppm", argv[9], i) < 0 || P6colorpalette(size, colormap, colorcount, output[i], b) == 1){
-            printf("Main Error \n");
+            printf("Main Error\n");
             freeComplexNumber(center);
             for(int j = 0; j < i; j ++) { 
                 if(*(output + j) != NULL) {
