@@ -46,7 +46,7 @@ uint8_t** FileToColorMap(char* colorfile, int* colorcount)
             }
         else {
             if (r > 255 || r < 0 || g > 255 || g < 0 || b > 255 || b < 0) {
-                freeMap(i + 1, carray);
+                freeMap(i, carray);
                 return NULL;
             }
             uint8_t* rgb = (uint8_t*) malloc (3 * sizeof(uint8_t));
