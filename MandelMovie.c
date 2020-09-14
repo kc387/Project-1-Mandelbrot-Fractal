@@ -77,6 +77,8 @@ int main(int argc, char* argv[])
     	return 1;
     }
 
+    u_int64_t size = 2 * resolution + 1;
+
     //STEP 2: Run MandelMovie on the correct arguments.
     /*
     MandelMovie requires an output array, so make sure you allocate the proper amount of space. 
