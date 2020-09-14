@@ -92,17 +92,21 @@ int main(int argc, char* argv[])
     */
 
     //YOUR CODE HERE 
-    output = (uint64_t **) malloc (size * size * sizeof(uint64_t*));
+    output = (uint64_t **) malloc (framecount * sizeof(uint64_t*));
 
     if(output == NULL) {
         printf("Main Error \n");
-    	for(int i = 0; i < size * size; i ++) {
-            free(*(output + i));
-        }
-        free(output);
     	return 1;
     }
 
+    for (int i = 0; i < framecount; i ++) {
+        *(output + i) = (uint64_t *) malloc (size * size * sizeof(uint64_t));
+        if(*(output + i) == NULL) {
+            printf("Main Error \n");
+            return 1;
+        }
+    }
+    
     MandelMovie(threshold, max_iterations, center, initialscale, finalscale, framecount, resolution, output);
 
     //STEP 3: Output the results of MandelMovie to .ppm files.
