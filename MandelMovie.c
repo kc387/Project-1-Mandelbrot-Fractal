@@ -96,7 +96,10 @@ int main(int argc, char* argv[])
 
     if(output == NULL) {
         printf("Main Error \n");
-    	
+    	for(int i = 0; i < size * size; i ++) {
+            free(*(output + i));
+        }
+        free(output);
     	return 1;
     }
 
